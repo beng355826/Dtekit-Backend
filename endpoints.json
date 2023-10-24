@@ -1,6 +1,6 @@
 {
-  "status": "api working",
-  "message": "welcome to the Dtekit api router, here we define all the endpoints",
+  "status" : "api working",
+  "message" : "welcome to the Dtekit api router, here we define all the endpoints",
 
   "GET /api/users": {
     "description": "Returns a collection of all the user objects",
