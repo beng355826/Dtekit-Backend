@@ -16,6 +16,4 @@ app.use(error404)
 app.use(error500)
 
 
-app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`);
-})
+module.exports = app

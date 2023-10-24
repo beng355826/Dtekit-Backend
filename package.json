@@ -2,7 +2,7 @@
   "name": "dtekit-backend",
   "version": "1.0.0",
   "description": "Dtekit Be",
-  "main": "index.js", 
+  "main": "listen.js", 
   "scripts": {
     "test": "cross-env NODE_ENV=test node app.js",
     "server" : "cross-env NODE_ENV=prod node app.js"
