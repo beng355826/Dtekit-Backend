@@ -8,7 +8,7 @@ const deleteUserByIdController = require('../controllers/deleteUserById.controll
 
 router.get('/', (req,res,next) => {
 
-   fs.readFile('/Users/bennygreen/Documents/Dtekit-Backend/endpoints.json', 'utf-8').then((endPoints , err)=> {
+   fs.readFile(`${__dirname}/endpoints.json`, 'utf-8').then((endPoints , err)=> {
         const parsed = JSON.parse(endPoints)
         console.log(parsed);
         res.status(200).json(parsed)  
