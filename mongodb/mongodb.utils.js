@@ -10,7 +10,7 @@ const connect = async () => {
       });
     }
     catch(err) {
-        // console.log(err);
+        console.log(err);
         throw new Error(err)
     }
 
@@ -23,7 +23,7 @@ const disconnect = async () => {
 
     }
     catch(err) {
-        // console.log(err);
+        console.log(err);
         throw new Error(err)
     }
 
@@ -36,7 +36,7 @@ const dropCollection = async (collectionName) => {          //this drops the dat
     }
     catch (err) {
         if(err.code === 26){
-            // console.log('namespace %s not found', collectionName);
+            console.log('namespace %s not found', collectionName);
         } else {
             throw new Error(err);
         }
