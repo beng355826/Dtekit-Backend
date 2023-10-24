@@ -1,0 +1,68 @@
+{
+  "status": "api working",
+  "message": "welcome to the Dtekit api router, here we define all the endpoints",
+
+  "GET /api/users": {
+    "description": "Returns a collection of all the user objects",
+    "queries": "n/a",
+    "request body format": "n/a",
+    "example response": {
+      "name": "lynny",
+      "email": "lynny@lynny.com",
+      "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+      "_id": "6537f841793363b7c0fa3209",
+      "__v": 0
+    }
+  },
+  "POST /api/users": {
+    "description": "Creates a user document within the user collection and returns that newly created document, Object Id is not required. The password is encrypted before it is sent to the database, If the email is already already registered a custom 400 error will be returned. likewise if the required fields are missing there will be a 400 error returned ",
+    "queries": "n/a",
+    "request format": {
+      "name": "string - required",
+      "email": "string - required",
+      "password": "string - minimum characters - 6 - required"
+    },
+    "example response": {
+      "name": "calum",
+      "email": "calum@lynny.com",
+      "password": "$2b$10$snXGbuT58ed3cGQuwT/79uqRhfiIJ2LPGWWqwzt.dBL27HGP9r83S",
+      "_id": "6537ffd6aef60f8c3330e58c",
+      "__v": 0
+    }
+  },
+
+  "GET /api/users/:id": {
+    "description": "Returns document according to the object id provided. Will return 400 if the id does not conform to the type of an object id. Will return 404 if the type is correct but not found.",
+    "queries": "n/a",
+    "request body format": "n/a",
+    "example response": {
+      "name": "lynny",
+      "email": "lynny@lynny.com",
+      "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+      "_id": "6537f841793363b7c0fa3209",
+      "__v": 0
+    }
+  },
+  "PATCH /api/users/:id": {
+    "description": "will update a user body with new values and will return the updated object, if the password is changed this should encrypt the new password before being sent to the database, 400 error will be returned if properties on the request body are invalid or the id is not valid",
+    "queries": "n/a",
+    "request format": {
+      "name": "string - optional",
+      "email": "string - optional",
+      "password": "string - minimum characters - 6 - required - optional"
+    },
+    "example response": {
+      "name": "new name",
+      "email": "newemail@newemail.com",
+      "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+      "_id": "6537f841793363b7c0fa3209",
+      "__v": 0
+    }
+  },
+  "DELETE /api/users/:id": {
+    "description": "Deletes the requested user and returns a no content 204 status if successfulm returns a 400 error if id is not valid.",
+    "queries": "n/a",
+    "request format": "n/a",
+    "example response": "204 status and nothing on response body."
+  }
+}

@@ -1,4 +1,4 @@
-// mongodb+srv://bennyg:O6IkDI0AozxgRmS8@cluster0.gc8yylu.mongodb.net/?retryWrites=true&w=majority
+
 const {error400, error404 ,error500} = require('./error-handling')
 const express = require('express')
 let PORT = 9090
