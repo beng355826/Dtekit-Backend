@@ -4,8 +4,9 @@
   "description": "Dtekit Be",
   "main": "listen.js", 
   "scripts": {
+    "start" : "node listen.js",
     "test": "cross-env NODE_ENV=test node app.js",
-    "server" : "cross-env NODE_ENV=prod node app.js"
+    "server" : "cross-env NODE_ENV=prod node listen.js"
   },
   "author": "",
   "license": "ISC",
