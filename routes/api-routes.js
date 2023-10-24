@@ -14,7 +14,7 @@ router.get('/', (req,res,next) => {
         res.status(200).json(parsed)  
     
     }).catch((err) => {
-        res.status(500).json({fsReadFile: 'failed'})
+        res.status(500).json({fsReadFile: 'failed', errorMsg: err})
     })
 
 })
