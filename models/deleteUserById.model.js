@@ -1,23 +1,14 @@
 const mongoose = require('mongoose')
 const {userModel} = require('./createUser.model')
+const isIdValid = require("../utils/isIdValid");
 
 async function deleteUserByIdModel (id) {
+if (typeof await isIdValid(id) === "object") {
+    return Promise.reject(await isIdValid(id));
+    }
 
-isIdValid = /^[0-9a-fA-F]{24}$/.test(id)
-console.log(id);
-if(isIdValid){
     const response = await(userModel.deleteOne({_id : id}))
-    console.log(response);
-
-    if(response.deletedCount !== 1) return Promise.reject({status : 404})
     return response
-    
-
-} else {
-   return Promise.reject({msg: 'id not valid'})
-}
-
-
 
 }
 

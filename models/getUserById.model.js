@@ -1,17 +1,16 @@
 const mongoose = require('mongoose')
 const {userModel} = require('./createUser.model')
+const isIdValid = require("../utils/isIdValid");
 
-async function getUserByIdModel (param) {
+async function getUserByIdModel (id) {
+    
+    if (typeof await isIdValid(id) === "object") {
+        return Promise.reject(await isIdValid(id));
+      }
 
-isIdValid = /^[0-9a-fA-F]{24}$/.test(param)
+    const response = await(userModel.find({_id : id }))
+    return response[0]
 
-if(isIdValid){
-    const response = await(userModel.find({_id : param }))
-    if(response.length === 0) return Promise.reject({status : 404})
-    return response
-} else {
-   return Promise.reject({msg: 'id not valid'})
-}
 
 }
 

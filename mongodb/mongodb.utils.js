@@ -5,6 +5,7 @@ const connect = async () => {
 
     try{
       await  mongoose.connect(process.env.MONGODB_URL, {
+        dbName: process.env.NODE_ENV,
         useNewUrlParser : true,
         useUnifiedTopology : true
       });
@@ -19,8 +20,7 @@ const connect = async () => {
 const disconnect = async () => {
 
     try{
-      await  mongoose.disconnect(URL);
-
+      await mongoose.disconnect();
     }
     catch(err) {
         console.log(err);

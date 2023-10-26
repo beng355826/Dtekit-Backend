@@ -5,7 +5,7 @@ async function createUser (req,res,next) {
     
     try{
         const response = await createUserModel(req)
-        res.status(200).json(response)
+        res.status(201).json(response)
     }
     catch (err) {
         next(err)
