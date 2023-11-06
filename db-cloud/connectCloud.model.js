@@ -7,7 +7,7 @@ const multer = Multer({
 })
 
 let projectId = 'norse-avatar-403219'             
-let keyFilename = process.env.CLOUD_STORAGE_KEY
+let keyFilename = process.env.GCS_KEY
 
 const storage = new Storage({
     projectId,
