@@ -4,13 +4,13 @@ const app = require("../app");
 
 describe('Get mixes - (GET api/mixes)', () => {
     
-    it('get all mixes', () => {
+    it.only('get all mixes', () => {
         
         return request(app)
         .get('/api/mixes')
         .expect(200)
         .then(({body}) => {
-
+console.log(body);
             body.forEach(mix => {
                 expect(mix).toHaveProperty('name');
                 expect(mix).toHaveProperty('year');

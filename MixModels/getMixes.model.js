@@ -16,7 +16,6 @@ async function getMixesModel (query) {
   }
 
     const [files] = await bucket.getFiles()
-
         const fileList = await Promise.all(
             files.map(async (file) => {
                 const [publicUrl] = await file.getSignedUrl({
