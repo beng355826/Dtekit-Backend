@@ -1,8 +1,6 @@
-const {deleteUserByIdModel} = require('../models/deleteUserById.model')
+const {deleteUserByIdModel} = require('../UserModels/deleteUserById.model')
 
 async function deleteUserByIdController (req,res,next) {
-    
-   
     
     try{
     const response = await deleteUserByIdModel(req.params.id)
@@ -11,8 +9,6 @@ async function deleteUserByIdController (req,res,next) {
     catch(err) {
         next(err)
     }
-    
-
 }
 
 module.exports = deleteUserByIdController

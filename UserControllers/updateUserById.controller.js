@@ -1,4 +1,4 @@
-const { updateUserByIdModel } = require("../models/updateUserById.model");
+const { updateUserByIdModel } = require("../UserModels/updateUserById.model");
 
 async function updateUserByIdController(req, res, next) {
   try {

@@ -1,21 +1,10 @@
 let router = require('express').Router()
-const createUserController = require('../controllers/createUser.controller')
-const getAllUsersController = require('../controllers/getAllUsers.controller')
-const getUserByIdController = require('../controllers/getUserById.controller')
-const updateUserByIdController = require('../controllers/updateUserById.controller')
-const deleteUserByIdController = require('../controllers/deleteUserById.controller')
+const createUserController = require('../UserControllers/createUser.controller')
+const getAllUsersController = require('../UserControllers/getAllUsers.controller')
+const getUserByIdController = require('../UserControllers/getUserById.controller')
+const updateUserByIdController = require('../UserControllers/updateUserById.controller')
+const deleteUserByIdController = require('../UserControllers/deleteUserById.controller')
 
-router.get('/', (req,res, next) => {
-
-   fs.readFile(`${__dirname}/endpoints.json`, 'utf-8').then((endPoints , err)=> {
-        const parsed = JSON.parse(endPoints)
-        res.status(200).json(parsed)  
-    
-    }).catch((err) => {
-        next(err)
-    })
-
-})
 
 router.post('/users', createUserController)
 router.get('/users', getAllUsersController)

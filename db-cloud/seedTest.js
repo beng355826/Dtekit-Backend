@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const { userModel } = require("../models/createUser.model");
+const { userModel } = require("../UserModels/createUser.model");
 
 async function seedUsers(testUsers) {
 const promiseArray = []

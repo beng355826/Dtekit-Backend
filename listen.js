@@ -1,6 +1,6 @@
 const app = require('./app.js')
 const {PORT = 9090} = process.env
-const mongoDb = require('./mongodb/mongodb.utils')
+const mongoDb = require('./db-cloud/mongodb.utils.js')
 
 mongoDb.connect()
 

@@ -1,5 +1,5 @@
 const { error } = require('@hapi/joi/lib/base');
-const {getUserByIdModel} = require('../models/getUserById.model')
+const {getUserByIdModel} = require('../UserModels/getUserById.model')
 
 async function getUserByIdController (req,res,next) {
 

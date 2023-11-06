@@ -1,11 +1,10 @@
 function error400(err, req, res, next) {
   if (err.errors)
-    res.status(400).json({ error: "400 - not valid request" }); //createUser / updateUserById
+    res.status(400).json({ error: "400 - not valid request" });
   else if (err.msg === "email already registered") {
-    // createUser
     res.status(400).json(err);
   } else if (err.msg === "id not valid") {
-    //getIdByUser
+
     res.status(400).json(err);
   } else {
     next(err);
@@ -14,7 +13,7 @@ function error400(err, req, res, next) {
 
 function error404(err, req, res, next) {
   if (err.status === 404) {
-    res.status(404).json({ msg: "resource not found" }); //getIdByUser
+    res.status(404).json({ msg: "resource not found" }); 
   } else {
     next(err);
   }

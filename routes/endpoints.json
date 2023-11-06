@@ -60,9 +60,43 @@
     }
   },
   "DELETE /api/users/:id": {
-    "description": "Deletes the requested user and returns a no content 204 status if successfulm returns a 400 error if id is not valid.",
+    "description": "Deletes the requested user and returns a no content 204 status if successful returns a 400 error if id is not valid.",
     "queries": "n/a",
     "request format": "n/a",
     "example response": "204 status and nothing on response body."
+  },
+
+  "Upload /api/pics/upload" : {
+    "description" : "Uploads a photo to the webapp provided that the correct body is sent and a jpg/png is attached to the request",
+    "queries" : "'n/a",
+    "request format" : {
+      "year" : "between 2020 and 2023",
+      "setting" : "either chilling, dejaying, activity or posterss"
+    },
+    "example response" : ["201", "{msg: 'file uploaded'}"]
+  },
+  "GET /api/pics" : {
+    "description" : "gets all pictures and also takes queries",
+    "queries" : "year : (between 2020 and 2023) , setting : (either chilling, dejaying, activity, posterss), order = (order by year - either asc , desc), p : (pagination, 10 per page, without this query you will get all pics in db)",
+    "request format" : "n/a",
+    "example response" : {
+      
+        "name": "300034895_1150624555667408_8660537600174158665_n.jpg",
+        "year": "2022",
+        "setting": "dejaying",
+        "publicUrl": "https://storage.googleapis.com/dtekit_pics/2022dejaying300034895_1150624555667408_8660537600174158665_n.jpg?GoogleAccessId=dtekit-pics-mixes%40norse-avatar-403219.iam.gserviceaccount.com&Expires=1893456000&Signature=p3F7y0xvv%2FkQ%2Bf5jLZQweNV1TjZomTXwUaZncR3g3P5d1JYC20Nd8gNoo8ZuC%2F47%2FzimRLbLvkEPFQqR8rwBBkMjjWpn5pbwnjjHCO%2BO%2FvHsku1eWXUakqCM2yJogSEEMpPJLQnKHOYpOSNfX0j%2BGvyfmZyRvnA36pGI4wURorMhdpdbkjmXP9gWUr1qrc7JjsSJPJDlm6icQ%2Bl%2ByIPXEqmCzU51VczKd3Kf%2BI1feFY7poJCZ%2FIxVxXBBr51p5kV0KI7XFFSV9DFWEI2laVWTCVJ4zSv7V%2FRMbdvH%2BM3KbFjJTJrl2mwClK3pwWBSrrJjpZ%2BUMn%2BqiUpBAN8eyEHbw%3D%3D"
+      
+    }
+  },
+
+  "GET /api/mixes" : {
+    "description" : "gets all DJ mixes and can also filter by year",
+    "queries" : "year : (between 2020 and 2023)",
+    "request format" : "n/a",
+    "example response" : {
+      "name": "Mr Swift.mp3",
+      "year": "2020",
+      "publicUrl": "https://storage.googleapis.com/dtekit_mixes/2020%20-%20Mr%20Swift.mp3?GoogleAccessId=dtekit-pics-mixes%40norse-avatar-403219.iam.gserviceaccount.com&Expires=1893456000&Signature=cnfXM7TYAvHAbzVzl3LYNHAvIbBvfMuH6WW5Fdk6OWCpjVx14xYAauNGLXXIARmWpyWMmffrfyFBXZC%2BpcfG4YYj93MkTg%2FHjWTCqWmFdNuOvX1O%2FZfdacJhLw8tSr0Ymc610NinoirWS8Yc3RIniSf8VbUyAckgY0D506oRyxlDLJNMXHB1FGHjoPxPfrzvKZZwfQQI1loIhIZUEHTJFy0mZULAIFzmOy83RPxMmkTzA%2Fdtd27EPxOy3wr8pFwTydl022%2BRrwxqtRjk1bMDaIE4CRuec7BTlMPWFylEF3p77nPmsomItFfetkMf%2FTn30j6VxRYXFr07%2BogV%2BKHkyw%3D%3D"
+    }
   }
 }

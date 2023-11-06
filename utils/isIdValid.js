@@ -1,4 +1,4 @@
-const {userModel} = require('../models/createUser.model')
+const {userModel} = require('../UserModels/createUser.model')
 const mongoose = require('mongoose')
 
 

@@ -1,8 +1,8 @@
 const request = require("supertest");
 const app = require("../app");
-const mongodDb = require("../mongodb/mongodb.utils");
-const seedUsers = require("../mongodb/seedTest");
-const testUsers = require("../mongodb/testData");
+const mongodDb = require("../db-cloud/mongodb.utils");
+const seedUsers = require("../db-cloud/seedTest");
+const testUsers = require("../db-cloud/testData");
 
 const encryptPasswordRGX = /^\$2[aby]\$[0-9]{2}\$[./0-9A-Za-z]{53}$/;
 const ObjectIdRGX = /^[0-9a-fA-F]{24}$/;
