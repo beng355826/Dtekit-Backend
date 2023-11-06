@@ -1,99 +1,116 @@
 {
-  "status" : "api working",
-  "message" : "welcome to the Dtekit api router, here we define all the endpoints",
+  "User endpoints": {
+    "status": "api working",
+    "message": "welcome to the Dtekit api router, here we define all the endpoints",
 
-  "GET /api/users": {
-    "description": "Returns a collection of all the user objects",
-    "queries": "n/a",
-    "request body format": "n/a",
-    "example response": {
-      "name": "lynny",
-      "email": "lynny@lynny.com",
-      "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
-      "_id": "6537f841793363b7c0fa3209",
-      "__v": 0
-    }
-  },
-  "POST /api/users": {
-    "description": "Creates a user document within the user collection and returns that newly created document, Object Id is not required. The password is encrypted before it is sent to the database, If the email is already already registered a custom 400 error will be returned. likewise if the required fields are missing there will be a 400 error returned ",
-    "queries": "n/a",
-    "request format": {
-      "name": "string - required",
-      "email": "string - required",
-      "password": "string - minimum characters - 6 - required"
+    "GET /api/users": {
+      "description": "Returns a collection of all the user objects",
+      "queries": "n/a",
+      "request body format": "n/a",
+      "example response": {
+        "name": "lynny",
+        "email": "lynny@lynny.com",
+        "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+        "_id": "6537f841793363b7c0fa3209",
+        "__v": 0
+      }
     },
-    "example response": {
-      "name": "calum",
-      "email": "calum@lynny.com",
-      "password": "$2b$10$snXGbuT58ed3cGQuwT/79uqRhfiIJ2LPGWWqwzt.dBL27HGP9r83S",
-      "_id": "6537ffd6aef60f8c3330e58c",
-      "__v": 0
-    }
-  },
+    "POST /api/users": {
+      "description": "Creates a user document within the user collection and returns that newly created document, Object Id is not required. The password is encrypted before it is sent to the database, If the email is already already registered a custom 400 error will be returned. likewise if the required fields are missing there will be a 400 error returned ",
+      "queries": "n/a",
+      "request format": {
+        "name": "string - required",
+        "email": "string - required",
+        "password": "string - minimum characters - 6 - required"
+      },
+      "example response": {
+        "name": "calum",
+        "email": "calum@lynny.com",
+        "password": "$2b$10$snXGbuT58ed3cGQuwT/79uqRhfiIJ2LPGWWqwzt.dBL27HGP9r83S",
+        "_id": "6537ffd6aef60f8c3330e58c",
+        "__v": 0
+      }
+    },
 
-  "GET /api/users/:id": {
-    "description": "Returns document according to the object id provided. Will return 400 if the id does not conform to the type of an object id. Will return 404 if the type is correct but not found.",
-    "queries": "n/a",
-    "request body format": "n/a",
-    "example response": {
-      "name": "lynny",
-      "email": "lynny@lynny.com",
-      "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
-      "_id": "6537f841793363b7c0fa3209",
-      "__v": 0
-    }
-  },
-  "PATCH /api/users/:id": {
-    "description": "will update a user body with new values and will return the updated object, if the password is changed this should encrypt the new password before being sent to the database, 400 error will be returned if properties on the request body are invalid or the id is not valid",
-    "queries": "n/a",
-    "request format": {
-      "name": "string - optional",
-      "email": "string - optional",
-      "password": "string - minimum characters - 6 - required - optional"
+    "GET /api/users/:id": {
+      "description": "Returns document according to the object id provided. Will return 400 if the id does not conform to the type of an object id. Will return 404 if the type is correct but not found.",
+      "queries": "n/a",
+      "request body format": "n/a",
+      "example response": {
+        "name": "lynny",
+        "email": "lynny@lynny.com",
+        "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+        "_id": "6537f841793363b7c0fa3209",
+        "__v": 0
+      }
     },
-    "example response": {
-      "name": "new name",
-      "email": "newemail@newemail.com",
-      "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
-      "_id": "6537f841793363b7c0fa3209",
-      "__v": 0
-    }
-  },
-  "DELETE /api/users/:id": {
-    "description": "Deletes the requested user and returns a no content 204 status if successful returns a 400 error if id is not valid.",
-    "queries": "n/a",
-    "request format": "n/a",
-    "example response": "204 status and nothing on response body."
-  },
+    "PATCH /api/users/:id": {
+      "description": "will update a user body with new values and will return the updated object, if the password is changed this should encrypt the new password before being sent to the database, 400 error will be returned if properties on the request body are invalid or the id is not valid",
+      "queries": "n/a",
+      "request format": {
+        "name": "string - optional",
+        "email": "string - optional",
+        "password": "string - minimum characters - 6 - required - optional"
+      },
+      "example response": {
+        "name": "new name",
+        "email": "newemail@newemail.com",
+        "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+        "_id": "6537f841793363b7c0fa3209",
+        "__v": 0
+      }
+    },
+    "DELETE /api/users/:id": {
+      "description": "Deletes the requested user and returns a no content 204 status if successful returns a 400 error if id is not valid.",
+      "queries": "n/a",
+      "request format": "n/a",
+      "example response": "204 status and nothing on response body."
+    },
 
-  "Upload /api/pics/upload" : {
-    "description" : "Uploads a photo to the webapp provided that the correct body is sent and a jpg/png is attached to the request",
-    "queries" : "'n/a",
-    "request format" : {
-      "year" : "between 2020 and 2023",
-      "setting" : "either chilling, dejaying, activity or posterss"
-    },
-    "example response" : ["201", "{msg: 'file uploaded'}"]
+    "POST LOGIN /api/users/login": {
+      "description": "return the user object only if the correct email address and password is passed",
+      "queries": "n/a",
+      "request format": {
+        "email": "string - required",
+        "password": "string - required"
+      },
+      "example response": {
+        "name": "lynny",
+        "email": "lynny@lynny.com",
+        "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
+        "_id": "6537f841793363b7c0fa3209",
+        "__v": 0
+      }
+    }
   },
-  "GET /api/pics" : {
-    "description" : "gets all pictures and also takes queries",
-    "queries" : "year : (between 2020 and 2023) , setting : (either chilling, dejaying, activity, posterss), order = (order by year - either asc , desc), p : (pagination, 10 per page, without this query you will get all pics in db)",
-    "request format" : "n/a",
-    "example response" : {
-      
+  "Picture Endpoints": {
+    "Upload /api/pics/upload": {
+      "description": "Uploads a photo to the webapp provided that the correct body is sent and a jpg/png is attached to the request",
+      "queries": "'n/a",
+      "request format": {
+        "year": "between 2020 and 2023",
+        "setting": "either chilling, dejaying, activity or posterss"
+      },
+      "example response": ["201", "{msg: 'file uploaded'}"]
+    },
+    "GET /api/pics": {
+      "description": "gets all pictures and also takes queries",
+      "queries": "year : (between 2020 and 2023) , setting : (either chilling, dejaying, activity, posterss), order = (order by year - either asc , desc), p : (pagination, 10 per page, without this query you will get all pics in db)",
+      "request format": "n/a",
+      "example response": {
         "name": "300034895_1150624555667408_8660537600174158665_n.jpg",
         "year": "2022",
         "setting": "dejaying",
         "publicUrl": "https://storage.googleapis.com/dtekit_pics/2022dejaying300034895_1150624555667408_8660537600174158665_n.jpg?GoogleAccessId=dtekit-pics-mixes%40norse-avatar-403219.iam.gserviceaccount.com&Expires=1893456000&Signature=p3F7y0xvv%2FkQ%2Bf5jLZQweNV1TjZomTXwUaZncR3g3P5d1JYC20Nd8gNoo8ZuC%2F47%2FzimRLbLvkEPFQqR8rwBBkMjjWpn5pbwnjjHCO%2BO%2FvHsku1eWXUakqCM2yJogSEEMpPJLQnKHOYpOSNfX0j%2BGvyfmZyRvnA36pGI4wURorMhdpdbkjmXP9gWUr1qrc7JjsSJPJDlm6icQ%2Bl%2ByIPXEqmCzU51VczKd3Kf%2BI1feFY7poJCZ%2FIxVxXBBr51p5kV0KI7XFFSV9DFWEI2laVWTCVJ4zSv7V%2FRMbdvH%2BM3KbFjJTJrl2mwClK3pwWBSrrJjpZ%2BUMn%2BqiUpBAN8eyEHbw%3D%3D"
-      
+      }
     }
   },
 
-  "GET /api/mixes" : {
-    "description" : "gets all DJ mixes and can also filter by year",
-    "queries" : "year : (between 2020 and 2023)",
-    "request format" : "n/a",
-    "example response" : {
+  "GET /api/mixes": {
+    "description": "gets all DJ mixes and can also filter by year",
+    "queries": "year : (between 2020 and 2023)",
+    "request format": "n/a",
+    "example response": {
       "name": "Mr Swift.mp3",
       "year": "2020",
       "publicUrl": "https://storage.googleapis.com/dtekit_mixes/2020%20-%20Mr%20Swift.mp3?GoogleAccessId=dtekit-pics-mixes%40norse-avatar-403219.iam.gserviceaccount.com&Expires=1893456000&Signature=cnfXM7TYAvHAbzVzl3LYNHAvIbBvfMuH6WW5Fdk6OWCpjVx14xYAauNGLXXIARmWpyWMmffrfyFBXZC%2BpcfG4YYj93MkTg%2FHjWTCqWmFdNuOvX1O%2FZfdacJhLw8tSr0Ymc610NinoirWS8Yc3RIniSf8VbUyAckgY0D506oRyxlDLJNMXHB1FGHjoPxPfrzvKZZwfQQI1loIhIZUEHTJFy0mZULAIFzmOy83RPxMmkTzA%2Fdtd27EPxOy3wr8pFwTydl022%2BRrwxqtRjk1bMDaIE4CRuec7BTlMPWFylEF3p77nPmsomItFfetkMf%2FTn30j6VxRYXFr07%2BogV%2BKHkyw%3D%3D"

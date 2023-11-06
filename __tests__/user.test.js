@@ -211,3 +211,54 @@ describe("Delete user by Id - (DELETE /api/users/id)", () => {
     expect(response.body).toEqual({ msg: "resource not found" });
   });
 });
+
+
+describe('login - (POST /api/users/login)', () => {
+
+  it.skip('should log the user in provided the correct body', async () => {
+    
+    const response = await request(app)
+    .post('/api/users/login')
+    .expect(200)
+    .send({
+      email : 'lynny@lynny.com',
+      password : 'password'
+    })
+
+   console.log(response.body);
+    expect(response.body).toHaveProperty(
+    'name', 'lynny');
+    expect(response.body).toHaveProperty(
+      'email', 'lynny@lynny.com');
+          
+        
+});
+
+it('error 404 - if email is invalid', async () => {
+    
+  const response = await request(app)
+  .post('/api/users/login')
+  .expect(404)
+  .send({
+    email : 'wrongEmail',
+    password : 'password'
+  })
+ 
+  expect(response.body).toEqual({msg: 'not valid user'});
+});
+
+it('error 404 - if password is invalid', async () => {
+    
+  const response = await request(app)
+  .post('/api/users/login')
+  .expect(404)
+  .send({
+    email : 'lynny@lynny.com',
+    password : 'wrongPassword'
+  })
+ 
+  expect(response.body).toEqual({msg: 'not valid password'});
+});
+
+  
+});
