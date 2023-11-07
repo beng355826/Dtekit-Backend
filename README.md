@@ -1,6 +1,8 @@
-Link to the hosted version = https://dtek.onrender.com/api/ This will provide a description of all the available endpoints. 
+# DTEKIT community festival API
 
-Description: This project is the backend of a full stack website and app for a community run festival that I help to organise. I have used a Node.js express server using MongoDb and Google cloud to serve various endpoints.
+Link to the hosted version: https://dtek.onrender.com/api/ - will provide a description of all the available endpoints. 
+
+DTEKIT festival API is the backend to a full stack webapp for a community run festival that I help to organise. I have used a Node.js express server using MongoDb and Google cloud to serve endpoints. The frontend is currently in development.
 
 Users: I have made it possible to create, update, delete a user as well as a log in function. I have used bcrypt in order to encrypt and validate passwords. no un-ecrypted passwords are stored in the backend. The users information is stored on a mongoDb atlas cluster. 
 
