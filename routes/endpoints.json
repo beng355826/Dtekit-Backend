@@ -95,7 +95,7 @@
     },
     "GET /api/pics": {
       "description": "gets all pictures and also takes queries",
-      "queries": "year : (between 2020 and 2023) , setting : (either chilling, dejaying, activity, posterss), order = (order by year - either asc , desc), p : (pagination, 10 per page, without this query you will get all pics in db)",
+      "queries": "year : (between 2020 and 2023) , setting : (either chilling, dejaying, activity, posterss), order = (order by year - either asc , desc), p : (pagination, 12 per page, without this query you will get all pics in db)",
       "request format": "n/a",
       "example response": {
         "name": "300034895_1150624555667408_8660537600174158665_n.jpg",

@@ -60,8 +60,8 @@ let count = 0;
         if(!query.p){
             return fileList
         } else {
-            const start = query.p * 10
-const end = start + 10
+            const start = query.p * 12
+const end = start + 12
         return fileList.slice(start,end)
         }
         
