@@ -1,5 +1,5 @@
 const { userModel } = require("./createUser.model");
-const encrypt = require("../utils/encryptPassword");
+const encrypt = require("../utils/encrypt");
 const isIdValid = require("../utils/isIdValid");
 
 async function updateUserByIdModel(id, body) {

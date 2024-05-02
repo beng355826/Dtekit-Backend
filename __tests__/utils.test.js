@@ -1,12 +1,28 @@
-const encrypt = require("../utils/encryptPassword");
+const encrypt = require("../utils/encrypt");
 const isIdValid = require("../utils/isIdValid");
+const eightDigitPasscode = require('../utils/eightDigitPasscode')
+const checkEncryptionDB = require('../utils/checkEncryptionDB')
 const encryptPasswordRGX = /^\$2[aby]\$[0-9]{2}\$[./0-9A-Za-z]{53}$/;
 const ObjectIdRGX = /^[0-9a-fA-F]{24}$/;
 const request = require("supertest");
 const app = require("../app");
-const mongodDb = require("../mongodb/mongodb.utils");
-const seedUsers = require("../mongodb/seedTest");
-const testUsers = require("../mongodb/testData");
+const mongodDb = require("../db-cloud/mongodb.utils");
+const seedUsers = require("../db-cloud/seedTest");
+const testUsers = require("../db-cloud/testData");
+
+const newUserOne = 
+  {
+    email: "angel@angel.com",
+    password: "password1",
+    accountStatus: "inactive"
+  };        
+  const newUserTwo = 
+  {
+    email: "devil@devil.com",
+    password: "password2",
+    accountStatus: "inactive"
+  };
+
 
 beforeAll(async () => {
   await mongodDb.connect();
@@ -47,4 +63,54 @@ describe("check id is valid", () => {
     expect(result).toEqual({status : 404});
 
   });
+});
+
+
+describe('8 digit passcode generator', () => {
+
+  it('returns a different 8 digit passcode every time its run', () => {
+    for(let i = 0 ; i < 100 ; i++){
+      expect(eightDigitPasscode().toString()).toHaveLength(8);
+      
+    }
+
+  
+  })
+  
+});
+
+describe.only('checkEncryptionDB', () => {
+
+  test('should recognise email address', async () => {
+
+
+    const createUser1 = await request(app).post("/api/users")
+    .expect(201)
+    .send(newUserOne)
+    const createUser2 = await request(app).post("/api/users")
+    .expect(201)
+    .send(newUserTwo)
+
+    expect(await checkEncryptionDB("angel@angel.com")).toEqual(true);
+    expect(await checkEncryptionDB("randomword")).toEqual(false);
+    
+  });
+
+  test('should recognise password', async () => {
+
+    const createUser1 = await request(app).post("/api/users")
+    .expect(201)
+    .send(newUserOne)
+    const createUser2 = await request(app).post("/api/users")
+    .expect(201)
+    .send(newUserTwo)
+    
+    expect(await checkEncryptionDB('password5')).toEqual(true);
+    expect(await checkEncryptionDB("randomword")).toEqual(false);
+     
+  });
+
+ 
+
+  
 });

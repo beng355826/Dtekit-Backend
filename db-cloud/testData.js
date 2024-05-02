@@ -1,31 +1,36 @@
 const testUsers = [
   {
-    name: "godfrey",
+    
     email: "godfrey@godfrey.com",
-    password: "password",
+    password: "password3",
+    accountStatus: '99999999'
   },
   
   {
-    name: "lynny",
+    
     email: "lynny@lynny.com",
-    password: "password",
+    password: "password4",
+    accountStatus: 'active'
   },
 
   {
-    name: "phil",
+    
     email: "phil@phil.com",
-    password: "password",
+    password: "password5",
+    accountStatus: '11111111'
   },
 
   {
-    name: "james",
+    
     email: "james@harriet.com",
-    password: "password",
+    password: "password6",
+    accountStatus: 'inactive'
   },
   {
-    name: "harriet",
+   
     email: "harriet@harriet.com",
-    password: "password",
+    password: "password7",
+    accountStatus: 'inactive'
   },
 ];
 

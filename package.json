@@ -8,6 +8,7 @@
     "testUsers": "cross-env NODE_ENV=test jest __tests__/user.test.js --forceExit",
     "testPics": "cross-env NODE_ENV=test jest __tests__/pics.test.js",
     "testMixes": "cross-env NODE_ENV=test jest __tests__/mixes.test.js",
+    "testValidate": "cross-env NODE_ENV=test jest __tests__/validateUser.test.js",
     "testEnv": "cross-env NODE_ENV=test nodemon listen.js",
     "prodEnv": "cross-env NODE_ENV=prod nodemon listen.js",
     "testUtil": "jest /Users/bennygreen/Documents/Dtekit-Backend/__tests__/utils.test.js --forceExit "
@@ -28,6 +29,7 @@
     "jest-sorted": "^1.0.14",
     "mongoose": "^7.6.3",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
     "npm": "^10.2.1",
     "simple-oauth2": "^5.0.0",
     "supertest": "^6.3.3"
