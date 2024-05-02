@@ -73,7 +73,7 @@ describe("Create User - (POST /api/users)", () => {
       .expect(400)
       .send(incorrectUser)
       .then(({ body }) => {
-        expect(body).toEqual({ msg: "400 - needs an email and password to create user"});
+        expect(body).toEqual({ msg: "400 - needs an email,password and accountStatus to create user"});
       });
   });
 });
@@ -107,7 +107,7 @@ describe("Get user by Id - (GET /api/user/:id)", () => {
 });
 
 describe("Update user by id - (PATCH /api/user/:id)", () => {
-  it("should return the updated user object when a new value is provided", async () => {
+  it("should return the updated user object when a new email is provided", async () => {
     const update = {
       email: "lynnylynnylynny@lynny.com",
     };
@@ -121,6 +121,24 @@ describe("Update user by id - (PATCH /api/user/:id)", () => {
       .send(update);
 
     expect(response._body).toHaveProperty("email", "lynnylynnylynny@lynny.com");
+    expect(response._body).toHaveProperty("_id", id);
+    expect(encryptPasswordRGX.test(response._body.password)).toEqual(true);
+  });
+
+  it("should return the updated user object when a new account status is provided", async () => {
+    const update = {
+      accountStatus: "inactive",
+    };
+
+    const users = await request(app).get("/api/users");
+    const id = users.body[1]._id;
+
+    const response = await request(app)
+      .patch(`/api/users/${id}`)
+      .expect(201)
+      .send(update);
+
+    expect(response._body).toHaveProperty("accountStatus", "inactive");
     expect(response._body).toHaveProperty("_id", id);
     expect(encryptPasswordRGX.test(response._body.password)).toEqual(true);
   });
@@ -141,21 +159,6 @@ describe("Update user by id - (PATCH /api/user/:id)", () => {
 
     expect(response._body.password).not.toBe(originalPassword);
     expect(encryptPasswordRGX.test(response._body.password)).toEqual(true);
-  });
-
-  it("error - 400 - should not let user update user object with an email that is already registered", async () => {
-    const update = {
-      email: "godfrey@godfrey.com",
-    };
-
-    const users = await request(app).get("/api/users");
-    const id = users.body[1]._id;
-
-    const response = await request(app)
-      .patch(`/api/users/${id}`)
-      .expect(400)
-      .send(update);
-    expect(response.body).toEqual({ msg: "email already registered" });
   });
 
   it("error - 400 - when incorrect id format is presented", async () => {

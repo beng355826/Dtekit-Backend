@@ -28,7 +28,7 @@ const userModel = mongoose.model('users', userSchema)
 async function createUserModel (req) {
 
     if(Object.keys(req.body).length < 3){
-        return Promise.reject({msg: "400 - needs an email and password to create user"})
+        return Promise.reject({msg: "400 - needs an email,password and accountStatus to create user"})
     }
 
     const doesEmailExist = await(userModel.findOne({email : req.body.email})) 

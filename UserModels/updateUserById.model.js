@@ -3,17 +3,14 @@ const encrypt = require("../utils/encrypt");
 const isIdValid = require("../utils/isIdValid");
 
 async function updateUserByIdModel(id, body) {
-
+console.log(body);
   if (typeof await isIdValid(id) === "object") {
     return Promise.reject(await isIdValid(id));
   }
 
-  
   if (body.email) {
-    const doesEmailExit = await userModel.findOne({ email: body.email });
-    if (doesEmailExit) {
-      return Promise.reject({ msg: "email already registered" });
-    }
+    const encryptedEmail = await encrypt(body.email);
+    body.password = encryptedEmail;
   }
 
   if (body.password) {
@@ -25,7 +22,7 @@ async function updateUserByIdModel(id, body) {
     useFindAndModify: false,
     new: true,
   });
-
+console.log(response);
   return response;
 }
 

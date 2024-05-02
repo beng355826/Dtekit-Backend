@@ -1,27 +1,26 @@
 function error400(err, req, res, next) {
-  if (err.msg === "400 - needs an email and password to create user") {
+  if (
+    err.msg === "400 - needs an email,password and accountStatus to create user"
+  ) {
     res.status(400).json(err);
   } else if (err.msg === "400 - email not registered") {
     res.status(400).json(err);
   } else if (err.errors)
     res.status(400).json({ error: "400 - not valid request" });
-  else if (err.msg === "email already registered") {
-    res.status(400).json(err);
-  } else if (err.msg === "id not valid") {
+  else if (err.msg === "id not valid") {
     res.status(400).json(err);
   } else {
     next(err);
   }
 }
 
-function error403(err, req, res, next){
-if(err.msg === "403 - incorrect credentials"){
-  res.status(403).json(err);
-  console.log(err);
-} else {
-  next(err)
-}
-
+function error403(err, req, res, next) {
+  if (err.msg === "403 - incorrect credentials") {
+    res.status(403).json(err);
+    console.log(err);
+  } else {
+    next(err);
+  }
 }
 
 function error404(err, req, res, next) {
