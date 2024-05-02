@@ -207,4 +207,3 @@ describe("Delete user by Id - (DELETE /api/users/id)", () => {
     expect(response.body).toEqual({ msg: "resource not found" });
   });
 });
-
