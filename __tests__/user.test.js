@@ -128,9 +128,10 @@ describe("Update user by id - (PATCH /api/user/:id)", () => {
     expect(encryptPasswordRGX.test(response._body.password)).toEqual(true);
   });
 
-  it("should return the updated user object when a new account status is provided", async () => {
+  it.only("should return the updated user object when a new account status is provided", async () => {
     const update = {
       accountStatus: "inactive",
+      rememberMe: true,
     };
 
     const users = await request(app).get("/api/users");
@@ -142,6 +143,7 @@ describe("Update user by id - (PATCH /api/user/:id)", () => {
       .send(update);
 
     expect(response._body).toHaveProperty("accountStatus", "inactive");
+    expect(response._body).toHaveProperty("rememberMe", true);
     expect(response._body).toHaveProperty("_id", id);
     expect(encryptPasswordRGX.test(response._body.password)).toEqual(true);
   });
@@ -163,6 +165,8 @@ describe("Update user by id - (PATCH /api/user/:id)", () => {
     expect(response._body.password).not.toBe(originalPassword);
     expect(encryptPasswordRGX.test(response._body.password)).toEqual(true);
   });
+
+  
 
   it("error - 400 - when incorrect id format is presented", async () => {
     const update = {

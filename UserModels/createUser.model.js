@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const encrypt = require('../utils/encrypt');
-const boolean = require('@hapi/joi/lib/types/boolean');
 const saltRounds = 10   // the higher the number the stronger the encryption but it takes longer to encrypt 10 is standard.
 
 

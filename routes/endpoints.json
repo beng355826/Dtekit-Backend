@@ -8,10 +8,11 @@
       "queries": "n/a",
       "request body format": "n/a",
       "example response": {
-        "name": "lynny",
         "email": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "accountStatus": "inactive",
+        "rememberMe": true,
+        "sessionId": "string",
         "_id": "6537f84179************09",
         "__v": 0
       }
@@ -22,12 +23,16 @@
       "request format": {
         "email": "string - required",
         "password": "string - minimum characters - 6 - required",
-        "accountStatus" : "inactive"
+        "accountStatus" : "inactive",
+        "rememberMe": false,
+        "sessionId" : false
       },
       "example response": {
         "email": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "password": "$2b$10$snXGbuT58ed3cGQuwT/79uqRhfiIJ2LPGWWqwzt.dBL27HGP9r83S",
         "accountStatus" : "inactive",
+        "rememberMe": false,
+        "sessionId": false,
         "_id": "6537f84179************09",
         "__v": 0
       }
@@ -42,20 +47,27 @@
         "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "_id": "6537f84179************09",
         "accountStatus": "inactive",
+        "rememberMe": false,
+        "sessionId": false,
+
         "__v": 0
       }
     },
     "PATCH /api/users/:id": {
-      "description": "will update a user body with new values and will return the updated object, if the password is changed this should encrypt the new password before being sent to the database, 400 error will be returned if properties on the request body are invalid or the id is not valid",
+      "description": "will update a user body with new values and will return the updated object, if the password or email is changed this should encrypt the new password before being sent to the database, 400 error will be returned if properties on the request body are invalid or the id is not valid",
       "queries": "n/a",
       "request format": {
         "email": "string - optional",
-        "password": "string - minimum characters - 6 - required - optional"
+        "password": "string - minimum characters - 6 - required - optional",
+        "accountStatus": "active or inactive",
+        "rememberMe": "boolean - optional"
       },
       "example response": {
         "email": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "accountStatus": "inactive",
+        "rememberMe": false,
+        "sessionId": false,
         "_id": "6537f84179************09",
         "__v": 0
       }
@@ -79,6 +91,8 @@
           "email": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
           "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
           "accountStatus": "12345678",
+          "rememberMe": false,
+        "sessionId": false,
           "_id": "6537f84179************09",
           "__v": 0
         },
@@ -98,6 +112,8 @@
         "password": "$2b$10$BBj2OnDAPzVwPSMxVpEWwuiOaCt7ZAmGkRpz7Lg/FiL4.69wnFoBO",
         "accountStatus": "active",
         "_id": "6537f84179************09",
+        "rememberMe": false,
+        "sessionId": "string",
         "__v": 0
       }
     }
