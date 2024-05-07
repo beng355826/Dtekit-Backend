@@ -10,11 +10,16 @@ const newUserOne = {
   email: "angel@angel.com",
   password: "password1",
   accountStatus: "inactive",
+  rememberMe: false,
+  sessionId: false
+
 };
 const newUserTwo = {
   email: "devil@devil.com",
   password: "password2",
   accountStatus: "inactive",
+  rememberMe: false,
+  sessionId: false
 };
 
 beforeAll(async () => {
@@ -104,7 +109,7 @@ describe("PATCH /api/validate/authoriseUser", () => {
         password: "password1",
       });
 
-      console.log(body.accountStatus);
+  
     expect(body.accountStatus).toEqual("active");
     // expect(body._id).toEqual(ObjectId);
   });
@@ -129,7 +134,7 @@ describe("PATCH /api/validate/authoriseUser", () => {
     const oneTimePasscode = detectUser._body.userObject.accountStatus;
     const ObjectId = detectUser._body.userObject._id;
 
-    // console.log(ObjectId);
+   
     const { body } = await request(app)
       .patch("/api/validate/authoriseUser")
       .expect(403)
@@ -175,5 +180,75 @@ describe("PATCH /api/validate/authoriseUser", () => {
   
   });
 
+  test('should enable persistent cookies to be sent to the browser for session management if user checks "remember me" box', async () => {
+    
+    const createUser1 = await request(app)
+      .post("/api/users")
+      .expect(201)
+      .send(newUserOne);
+    const createUser2 = await request(app)
+      .post("/api/users")
+      .expect(201)
+      .send(newUserTwo);
+
+    const detectUser = await request(app)
+      .patch("/api/validate/detectUser")
+      .expect(201)
+      .send({
+        email: "angel@angel.com",
+      });
+
+    const oneTimePasscode = detectUser._body.userObject.accountStatus;
+    const ObjectId = detectUser._body.userObject._id;
+
+    const response = await request(app)
+      .patch("/api/validate/authoriseUser")
+      .expect(201)
+      .send({
+        otp: oneTimePasscode,
+        password: "password1",
+        rememberMe: true
+      });
+
+      expect(response.body.rememberMe).toEqual(true);
+      expect(response.headers['set-cookie'][0]).toMatch(/rememberMe=true/);
+
+
+  });
+
+
+  test('should enable temporary cookies to be sent to the browser for session management if user does not check "remember me"', async () => {
+    
+    const createUser1 = await request(app)
+      .post("/api/users")
+      .expect(201)
+      .send(newUserOne);
+    const createUser2 = await request(app)
+      .post("/api/users")
+      .expect(201)
+      .send(newUserTwo);
+
+    const detectUser = await request(app)
+      .patch("/api/validate/detectUser")
+      .expect(201)
+      .send({
+        email: "angel@angel.com",
+      });
+
+    const oneTimePasscode = detectUser._body.userObject.accountStatus;
+    const ObjectId = detectUser._body.userObject._id;
+
+    const response = await request(app)
+      .patch("/api/validate/authoriseUser")
+      .expect(201)
+      .send({
+        otp: oneTimePasscode,
+        password: "password1",
+        rememberMe: false
+      });
+      expect(response.body.rememberMe).toEqual(false);
+      expect(response.headers['set-cookie'][0]).toMatch(/rememberMe=false/);
+      expect(response.headers['set-cookie'][1]).toMatch(/Max-Age=3600/);
+  });
 
 });

@@ -3,7 +3,6 @@ const encrypt = require("../utils/encrypt");
 const isIdValid = require("../utils/isIdValid");
 
 async function updateUserByIdModel(id, body) {
-console.log(body);
   if (typeof await isIdValid(id) === "object") {
     return Promise.reject(await isIdValid(id));
   }
@@ -22,7 +21,6 @@ console.log(body);
     useFindAndModify: false,
     new: true,
   });
-console.log(response);
   return response;
 }
 

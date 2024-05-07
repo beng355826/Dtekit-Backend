@@ -1,17 +1,18 @@
-const checkEncryptionDB = require('../utils/checkEncryptionDB')
+const checkEncryptionDB = require("../utils/checkEncryptionDB");
 const { userModel } = require("../UserModels/createUser.model");
 
-async function authoriseUserModel(req) {
+async function authoriseUserModel(req, sessionId) {
   try {
+    const isPasswordCorrect = await checkEncryptionDB(req.password);
+    if (req.otp === isPasswordCorrect.accountStatus) {
+      const updateStatus = await userModel.findOneAndUpdate(
+        { _id: isPasswordCorrect._id },
+        { $set: { accountStatus: "active", rememberMe: req.rememberMe, sessionId: sessionId } },
+        { new: true }
+      );
 
-    const isPasswordCorrect = await checkEncryptionDB(req.password)
-    if(req.otp === isPasswordCorrect.accountStatus){
-      
-      const updateStatus = await userModel.findOneAndUpdate({_id: isPasswordCorrect._id}, {$set: {accountStatus: 'active'}}, {new : true})
-
-      console.log(updateStatus);
-      return updateStatus
-
+     
+      return updateStatus;
     } else {
       return Promise.reject({ msg: "403 - incorrect credentials" });
     }

@@ -29,9 +29,11 @@ describe("Get All users - (GET /api/users)", () => {
       .get("/api/users")
       .expect(200)
       .then(({ body }) => {
+
+    
+
         for (let i = 0; i < body.length; i++) {
           expect(body[i].email).toEqual(testUsers[i].email);
-         // expect(Object.keys(body[i])).toHaveLength(4);
         }
       });
   });
@@ -46,7 +48,9 @@ describe("Create User - (POST /api/users)", () => {
   {
     email: "nigel@nigel.com",
     password: "password",
-    accountStatus: "inactive"
+    accountStatus: "inactive",
+    rememberMe: false,
+    sessionId: false
   };
 
   it("creates and returns a new user provided the correctly formatted request body has been sent and also returns an encypted password", () => {
@@ -58,7 +62,6 @@ describe("Create User - (POST /api/users)", () => {
         expect(body).toHaveProperty("email");
         expect(body).toHaveProperty("password");
         expect(body).toHaveProperty("accountStatus");
-      //  expect(Object.keys(body)).toHaveLength(4);
         expect(encryptPasswordRGX.test(body.password)).toEqual(true);
       });
   });

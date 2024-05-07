@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
-const encrypt = require('../utils/encrypt')
+const encrypt = require('../utils/encrypt');
+const boolean = require('@hapi/joi/lib/types/boolean');
 const saltRounds = 10   // the higher the number the stronger the encryption but it takes longer to encrypt 10 is standard.
 
 
@@ -18,6 +19,14 @@ const userSchema = mongoose.Schema({
     accountStatus: {
         type: mongoose.Schema.Types.Mixed,
         required: true
+    },
+    rememberMe: {
+        type: Boolean,
+        required: true
+    },
+    sessionId: {
+        type: mongoose.Schema.Types.Mixed,
+        required: true
     }
 })
 
@@ -27,7 +36,7 @@ const userModel = mongoose.model('users', userSchema)
 
 async function createUserModel (req) {
 
-    if(Object.keys(req.body).length < 3){
+    if(Object.keys(req.body).length < 5){
         return Promise.reject({msg: "400 - needs an email,password and accountStatus to create user"})
     }
 

@@ -10,7 +10,7 @@ describe('Get mixes - (GET api/mixes)', () => {
         .get('/api/mixes')
         .expect(200)
         .then(({body}) => {
-console.log(body);
+
             body.forEach(mix => {
                 expect(mix).toHaveProperty('name');
                 expect(mix).toHaveProperty('year');

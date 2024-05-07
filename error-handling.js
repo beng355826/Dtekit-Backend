@@ -17,7 +17,6 @@ function error400(err, req, res, next) {
 function error403(err, req, res, next) {
   if (err.msg === "403 - incorrect credentials") {
     res.status(403).json(err);
-    console.log(err);
   } else {
     next(err);
   }

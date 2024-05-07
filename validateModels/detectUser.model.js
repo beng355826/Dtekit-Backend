@@ -33,7 +33,7 @@ async function detectUserModel(req) {
 
       const sendEmail = await transport.sendMail(message);
 
-      // console.log(statusUpdate);
+      
       return {
         userObject: statusUpdate,
         requestSuccessful: true
